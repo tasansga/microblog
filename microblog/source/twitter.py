@@ -65,7 +65,9 @@ def capture(config):
         )
         # We delete existing rules first so only the supplied, new rule is active.
         streaming_client.delete_rules(streaming_client.get_rules().data)
-        rule_result = streaming_client.add_rules(tweepy.StreamRule(config["MB_SOURCE_TWITTER_RULE"]))
+        rule_result = streaming_client.add_rules(
+            tweepy.StreamRule(config["MB_SOURCE_TWITTER_RULE"])
+        )
         logging.debug("Added rule: %s", rule_result)
         logging.info("Currently active rules: %s", streaming_client.get_rules())
         # Use this to read the real stream; for our purposes a sample is good enough though
